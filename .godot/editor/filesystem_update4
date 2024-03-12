@@ -1,0 +1,4 @@
+res://Scenes/Levels/main.tscn
+res://Scenes/Player/player.tscn
+res://Scenes/Projectiles/laser.tscn
+res://Scenes/Projectiles/grenade.tscn

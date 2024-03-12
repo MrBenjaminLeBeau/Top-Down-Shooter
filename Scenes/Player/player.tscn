@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://c18l11ua1rtn0"]
+
+[ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_iekby"]
+[ext_resource type="Texture2D" uid="uid://35ivbitddscj" path="res://Graphics/player/player.png" id="1_ytg4g"]
+[ext_resource type="Script" path="res://Scenes/Player/laser_shooting.gd" id="3_2ks82"]
+[ext_resource type="Script" path="res://Scenes/Player/grenade_shooting.gd" id="4_fayul"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vcqb5"]
+radius = 60.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_iekby")
+
+[node name="PlayerImage" type="Sprite2D" parent="."]
+position = Vector2(40, 3)
+rotation = 1.5708
+texture = ExtResource("1_ytg4g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vcqb5")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+position_smoothing_enabled = true
+
+[node name="LaserShootingPoint" type="Node2D" parent="."]
+position = Vector2(141, 21)
+script = ExtResource("3_2ks82")
+
+[node name="LaserCooldownTimer" type="Timer" parent="LaserShootingPoint"]
+wait_time = 0.5
+one_shot = true
+
+[node name="GrenadeShootingPoint" type="Marker2D" parent="."]
+position = Vector2(59, -43)
+script = ExtResource("4_fayul")
+
+[node name="GrenadeCooldownTimer" type="Timer" parent="GrenadeShootingPoint"]
+wait_time = 0.2
+
+[connection signal="timeout" from="LaserShootingPoint/LaserCooldownTimer" to="LaserShootingPoint" method="_on_laser_cooldown_timer_timeout"]
+[connection signal="timeout" from="GrenadeShootingPoint/GrenadeCooldownTimer" to="GrenadeShootingPoint" method="_on_grenade_cooldown_timer_timeout"]
