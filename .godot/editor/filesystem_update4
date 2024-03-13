@@ -1,4 +1,9 @@
-res://Scenes/Levels/main.tscn
-res://Scenes/Player/player.tscn
+res://Scenes/Enemies/Drone/drone.tscn
+res://Scenes/Obstacles/building.gd
+res://Scenes/Obstacles/toilet.tscn
+res://Scenes/Obstacles/bed.tscn
+res://Scenes/Obstacles/building.tscn
 res://Scenes/Projectiles/laser.tscn
+res://Scenes/Player/player.tscn
+res://Scenes/Levels/main.tscn
 res://Scenes/Projectiles/grenade.tscn
