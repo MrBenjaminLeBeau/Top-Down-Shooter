@@ -1,12 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://c18l11ua1rtn0"]
+[gd_scene load_steps=8 format=3 uid="uid://c18l11ua1rtn0"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_iekby"]
 [ext_resource type="Texture2D" uid="uid://35ivbitddscj" path="res://Graphics/player/player.png" id="1_ytg4g"]
 [ext_resource type="Script" path="res://Scenes/Player/laser_shooting.gd" id="3_2ks82"]
 [ext_resource type="Script" path="res://Scenes/Player/grenade_shooting.gd" id="4_fayul"]
+[ext_resource type="Texture2D" uid="uid://b7gj1gt8jifya" path="res://Graphics/decals/white.png" id="5_1a5bh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vcqb5"]
 radius = 60.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1wkao"]
+particle_flag_disable_z = true
+spread = 30.0
+initial_velocity_min = 750.0
+initial_velocity_max = 1000.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+color = Color(0.678431, 0.847059, 0.901961, 0.392157)
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 63
@@ -38,6 +48,14 @@ script = ExtResource("4_fayul")
 
 [node name="GrenadeCooldownTimer" type="Timer" parent="GrenadeShootingPoint"]
 wait_time = 0.2
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(133, 21)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_1wkao")
+texture = ExtResource("5_1a5bh")
+lifetime = 0.1
+one_shot = true
 
 [connection signal="timeout" from="LaserShootingPoint/LaserCooldownTimer" to="LaserShootingPoint" method="_on_laser_cooldown_timer_timeout"]
 [connection signal="timeout" from="GrenadeShootingPoint/GrenadeCooldownTimer" to="GrenadeShootingPoint" method="_on_grenade_cooldown_timer_timeout"]

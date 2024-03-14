@@ -8,6 +8,7 @@ var can_shoot_laser: bool = true
 
 func _process(delta):
 	if Input.is_action_just_pressed("laser") and can_shoot_laser:
+		$"../GPUParticles2D".emitting = true
 		var laser = laser_scene.instantiate() as Laser
 		get_tree().root.add_child(laser)
 		
